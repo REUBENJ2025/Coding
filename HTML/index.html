@@ -1,0 +1,19 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+    var username = "Reuben";
+    var currentTime = DateTime.Now.ToString("F");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <h1>Hello, @username!</h1>
+    <p>Current time is: @currentTime</p>
+</body>
+</html>
