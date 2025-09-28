@@ -1,0 +1,44 @@
+#Pseudocode to python
+'''injury_severity 🡨 input("Enter injury severity (mild/moderate/severe): ")
+IF injury_severity = "severe" THEN
+    OUTPUT("Player's injury is severe. Immediate medical attention needed.")
+ELIF injury_severity = "moderate" THEN
+    OUTPUT("Player's injury is moderate. Consultation with medical staff required.")
+ELIF injury_severity = "mild" THEN
+    OUTPUT("Player's injury is mild. Rest and basic care advised.")
+ELSE
+    OUTPUT("Invalid injury severity input. Please enter mild, moderate, or severe.")
+END IF
+'''
+
+#Python Main Code
+
+injury_severity = input("Enter injury severity (mild/moderate/severe): ")
+injury_severity.lower()
+if injury_severity == "severe":
+    print("Player's injury is severe. Immediate medical attention needed.")
+
+elif injury_severity == "moderate":
+    print("Player's injury is moderate. Consultation with medical staff required.")
+
+elif injury_severity == "mild":
+    print("Player's injury is mild. Rest and basic care advised.")
+
+else:
+    print("Invalid injury severity input. Please enter mild, moderate, or severe.")
+
+#Match Case version
+def match_case_version():
+    injury_severity = input("Enter injury severity (mild/moderate/severe): ")
+    injury_severity.lower()
+    match injury_severity:
+        case "severe":
+            print("Player's injury is severe. Immediate medical attention needed.")
+        case "moderate":
+            print("Player's injury is moderate. Consultation with medical staff required.")
+        case "mild":
+            print("Player's injury is mild. Rest and basic care advised.")
+        case _:
+            print("Invalid injury severity input. Please enter mild, moderate, or severe.")
+
+#match_case_version()
