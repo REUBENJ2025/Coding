@@ -1,0 +1,11 @@
+# Hospital Theme: Check if a patient's temperature 
+# requires medical attention
+
+'''Errors are break pointed within VS Code'''
+
+
+patient_temperature = input("Enter the patient's temperature: ") # Input as string, should be a float, needs double brackets for a float convrsion
+if patient_temp > 38.0: # Does not match variable name, patient_temp should be >= 38.0
+    print("Patient's temperature is high. Medical attention needed.")
+else:
+    print("Patient's temperature is normal. Keep monitoring.")
