@@ -1,0 +1,35 @@
+#Source https://www.metoffice.gov.uk/weather/guides/coast-and-sea/beaufort-scale
+#Imported output colours
+from colorama import Fore, Back, Style
+
+#Syntax for libary
+
+#print(Fore.RED + 'some red text')
+#print(Style.RESET_ALL)
+
+print(Style.RESET_ALL)
+scale = int(input("Please enter a wind scale from 0 to 10: "))
+
+match scale:
+    case 0:
+        print(Fore.GREEN + Style.BRIGHT + "Calm.")
+    case 1: 
+        print(Fore.WHITE + Style.BRIGHT + "Light air.")
+    case 2:
+        print(Fore.CYAN + Style.BRIGHT + "Light breeze.")
+    case 3:
+        print(Fore.BLUE + Style.BRIGHT + "Gentle breeze.")
+    case 4:
+        print(Fore.YELLOW + Style.BRIGHT + "Moderate breeze.")
+    case 5:
+        print(Fore.LIGHTBLUE_EX + Style.BRIGHT + "Fresh breeze.")
+    case 6:
+        print(Fore.BLACK + Style.BRIGHT + "Strong breeze.")
+    case 7:
+        print(Fore.LIGHTBLUE_EX + Style.BRIGHT + "Near gale.")
+    case 8:
+        print(Fore.YELLOW + Style.BRIGHT + "Gale.")
+    case 9:
+        print(Fore.YELLOW + Style.BRIGHT + "Strong gale.")
+    case 10:
+        print(Fore.RED + Style.BRIGHT + "Storm", "⚠️")
