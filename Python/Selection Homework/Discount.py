@@ -14,5 +14,5 @@ elif purchase_amount > 80:
     final_amount = purchase_amount - discount
     print(f"You get a 5% discount, your final amount is: £{final_amount:.2f}")
 else:
-    print("Sorry, no discount applies to this purchase.")
+    print("Sorry, no discount applies to this purchase.") #Prints no discount applied depending on input
 

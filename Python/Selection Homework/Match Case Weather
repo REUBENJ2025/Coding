@@ -32,4 +32,4 @@ match scale:
     case 9:
         print(Fore.YELLOW + Style.BRIGHT + "Strong gale.")
     case 10:
-        print(Fore.RED + Style.BRIGHT + "Storm", "⚠️")
+        print(Fore.RED + Style.BRIGHT + "Storm", "⚠️")9     gv
