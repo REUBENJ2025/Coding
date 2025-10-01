@@ -2,3 +2,18 @@
 #Greg Allock
 #{DATE}
 #{Topic}
+
+def one():
+    pass
+def two():
+    pass    
+def three():
+    pass    
+def four():   
+    pass
+
+def main():
+    print("Main")
+
+if __name__ == "__main__":
+    main()
