@@ -10,7 +10,7 @@ def Age_Input():
     input_age = int(input("Enter your age: "))  
         
 
-# [comment]
+# Checks that Age is valid and is in boundary else prints invalid age
 def Age_Check():
     if input_age >= 0 and input_age <= 100:
         print("Valid age")
