@@ -1,19 +1,30 @@
-#Computer Science
-#Greg Allock
-#{DATE}
-#{Topic}
+# [program name]
+# ReubenJoseph
+# [date]
+# AS Computer Science
+# Greg Allock
 
-def one():
-    pass
+# [comment]
 def two():
-    pass    
-def three():
-    pass    
-def four():   
-    pass
+    try:
+        pass   
+    except Exception as e:
+        print("Error occurred:", e )
 
+# [comment]
+def one():
+    try:
+        pass   
+    except Exception as e:
+        print("Error occurred:", e )
+
+# [comment]
 def main():
-    print("Main")
+    try:
+        pass
+           
+    except Exception as e:
+        print("Error occurred:", e )    
 
-if __name__ == "__main__":
+if (__name__ == "__main__"):
     main()
