@@ -1,0 +1,4 @@
+import random
+
+def main():
+    random_lottery = random.choice("Lukas, Alfie, Pavel, Reuben") # Randomly select a name from the list with specifc chances
