@@ -1,0 +1,39 @@
+# Tassk startup
+# ReubenJoseph
+# 09/10/25
+# AS Computer Science
+# Greg Allock
+
+# Assign variables to take user input
+
+number1 = int(input("Enter a number: "))
+number2 = int(input("Enter another number: "))
+number3 = int(input("Enter another number"))
+number4 = int(input("Enter another number: "))
+number5 = int(input("Enter another number: "))
+
+#Function to check if number is odd or even
+
+def sum():
+    if number1 % 2 == 0:
+        print(f"{number1} is even")
+    else:
+        print(f"{number1} is odd")
+    if number2 % 2 == 0:
+        print(f"{number2} is even")
+    else:
+        print(f"{number2} is odd")
+    if number3 % 2 == 0:
+        print(f"{number3} is even")
+    else:
+        print(f"{number3} is odd")
+    if number4 % 2 == 0:
+        print(f"{number4} is even")
+    else:
+        print(f"{number4} is odd")
+    if number5 % 2 == 0:
+        print(f"{number5} is even")
+    else:
+        print(f"{number5} is odd")
+
+sum()
