@@ -1,4 +1,11 @@
 import random
 
 def main():
-    random_lottery = random.choice("Lukas, Alfie, Pavel, Reuben") # Randomly select a name from the list with specifc chances
+    choices = ["Lukas", "Reuben", "Pavel"]
+    probabilities = [0.7, 0.2, 0.1]  
+
+    result = random.choices(choices, weights=probabilities, k=1)[0]
+    print(result)
+
+
+main()
