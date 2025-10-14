@@ -1,0 +1,25 @@
+# Fizz Buzz
+# ReubenJoseph
+# 14/10/25
+# AS Computer Science
+# Greg Allock
+
+# Users enter a number between 1 and 100
+
+for i in range(1, 101):
+    myNumber = int(input("Enter a number between 1 and 100: "))
+    choice = input("Enter 'fizz' if divisible by 3, 'buzz' if divisible by 5, or 'fizzbuzz' if divisible by both: ").lower()
+
+    if myNumber % 3 == 0 and myNumber % 5 == 0:
+        correct = "fizzbuzz"
+    elif myNumber % 3 == 0:
+        correct = "fizz"
+    elif myNumber % 5 == 0:
+        correct = "buzz"
+    else:
+        correct = str(myNumber)
+
+    if choice == correct:
+        print(f"Correct! The answer is {correct}.")
+    else:
+        print(f"Incorrect. The correct answer is {correct}.")

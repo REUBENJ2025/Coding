@@ -1,0 +1,61 @@
+# fizz buzz
+# ReubenJoseph
+# 14/10/25
+# AS Computer Science
+# Greg Allock
+
+#Users enter a number between 1 and 100
+
+score = 0
+
+def fizz():
+    global score
+    if myNumber % 3 == 0:
+        correct_answer = "fizz"
+        if choice == correct_answer:
+            print("Fizz")
+            global score
+            score = score + 1
+        else:
+            buzz()
+
+def buzz():
+    global score
+    if myNumber % 5 == 0:
+        correct_answer = "buzz"
+        print("Buzz")
+        global score
+        score = score + 1
+    if myNumber % 5 != 0 and choice == "buzz" or myNumber % 3 != 0 and choice != "buzz":
+        fizzbuzz()
+
+def fizzbuzz():
+    global score
+    if myNumber % 3 == 0 and myNumber % 5 == 0 and choice == "fizzbuzz":
+        print("FizzBuzz")
+        score = score + 1
+    if myNumber % 3 != 0 and myNumber % 5 != 0 and choice == "fizzbuzz" or myNumber % 3 == 0 and myNumber % 5 != 0 and choice != "fizzbuzz" or myNumber % 3 != 0 and myNumber % 5 == 0 and choice != "fizzbuzz":
+        error()
+    
+            
+def error():
+    global score
+    if choice != "fizz" and choice != "buzz" and choice != "fizzbuzz":
+        print(myNumber)
+        fizz()
+
+def numberoutput():
+    global score
+    if myNumber % 3 > 0 and myNumber % 5 > 0 and choice != "fizz" and choice != "buzz" and choice != "fizzbuzz":
+        print(myNumber)
+
+
+
+for i in range(1,101):
+    global myNumber
+    myNumber = int(input(f"Enter a number between 1 and 100, current number is {i}: "))
+    while myNumber != i:
+        myNumber = int(input(f"Please enter the correct number, current number is {i}: "))
+    choice = str(input(f"Enter fizz if your number is divisible by 3, buzz if it is divisible by 5 or fizzbuzz if it is divisible by both or nothing if not divisable: "))
+    fizz()
+
