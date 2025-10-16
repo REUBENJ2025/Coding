@@ -16,8 +16,8 @@ def fizz():
             print("Fizz")
             global score
             score = score + 1
-        else:
-            buzz()
+    else:
+        buzz()
 
 def buzz():
     global score
@@ -26,7 +26,7 @@ def buzz():
         print("Buzz")
         global score
         score = score + 1
-    if myNumber % 5 != 0 and choice == "buzz" or myNumber % 3 != 0 and choice != "buzz":
+    if myNumber % 5 != 0 and choice == "buzz":
         fizzbuzz()
 
 def fizzbuzz():
@@ -34,7 +34,7 @@ def fizzbuzz():
     if myNumber % 3 == 0 and myNumber % 5 == 0 and choice == "fizzbuzz":
         print("FizzBuzz")
         score = score + 1
-    if myNumber % 3 != 0 and myNumber % 5 != 0 and choice == "fizzbuzz" or myNumber % 3 == 0 and myNumber % 5 != 0 and choice != "fizzbuzz" or myNumber % 3 != 0 and myNumber % 5 == 0 and choice != "fizzbuzz":
+    if myNumber % 3 != 0 and myNumber % 5 != 0 and choice == "fizzbuzz":
         error()
     
             
