@@ -17,19 +17,31 @@
 
 #imported os to create folder + file                                                                                                           
 import os
+import sys 
+import configparser # Formats ini file
 
+config = configparser.ConfigParser()
 
+config["Settings"] = {
+      "check_username": "True",
+      "theme": "Dark"
+      }
 
 
 #####################################################################################################################
 ###CREATES FOLDER AND FILE IN YOUR DOCUMENTS FOLDER IF YOU NEED TO REMOVE SHOULD LOOK LIKE: Documents/EmployeeData###
 #####################################################################################################################
-global file_path
+
 
 documents_folder = os.path.join(os.path.expanduser("~"), "Documents")       #Section creates folder an file using the os libary
 folder_name = os.path.join(documents_folder, "EmployeeData") #Creates Folder
-file_path = os.path.join(folder_name, "Employeedatabase.txt") #Creates File
+file_path = os.path.join(folder_name, "Employeedatabase.txt") #Creates text file
+ini_file = os.path.join(folder_name, "settings.ini")
+          
 os.makedirs(folder_name, exist_ok = True) 
+
+with open(ini_file, "w") as configfile:
+        config.write(configfile)
 
 if not os.path.exists(file_path): #Uses Logic Gate Not, so it will not overwrite file if exists 
     with open(file_path, "a") as file:  #Appends to the file 
@@ -38,7 +50,7 @@ if not os.path.exists(file_path): #Uses Logic Gate Not, so it will not overwrite
         
 
 #Checks to see if user is in database by looking inside the file and returning specific values
-def existingUsers(): 
+def existingUsers(file_path): 
     num = 1
     first_name = str(input("Please enter your First Name: "))
     last_name = str(input("Please enter your Last Name: "))
@@ -74,5 +86,7 @@ def existingUsers():
         
 
 
-
+config.read(ini_file)
+if config.getboolean("Settings", "check_username", fallback=False):
+  sys.exit()
 existingUsers()
