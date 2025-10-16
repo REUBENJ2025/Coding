@@ -59,6 +59,7 @@ def existingUsers():
           if base_username not in file_contents:
             file.write("\n")
             file.write(base_username)
+            file.close()
             print("Username is unique") # Adds username to the file if unique
             return True
           if base_username in file_contents:
