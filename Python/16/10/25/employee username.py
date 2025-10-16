@@ -32,8 +32,9 @@ file_path = os.path.join(folder_name, "Employeedatabase.txt") #Creates File
 os.makedirs(folder_name, exist_ok = True) 
 
 if not os.path.exists(file_path): #Uses Logic Gate Not, so it will not overwrite file if exists 
-    with open(file_path, "w") as file:  #Writes to the file 
-        file.write("Employee Logins")
+    with open(file_path, "a") as file:  #Appends to the file 
+        file.write("---Employee Logins--")
+        file.write("\n")
         file.close()
 
 #Checks to see if user is in database by looking inside the file and returning specific values
