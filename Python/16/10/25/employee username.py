@@ -90,4 +90,4 @@ config.read(ini_file)
 if config.getboolean("Settings", "check_username", fallback=False):
   sys.exit()
 else:
-  existingUsers()
+  existingUsers(file_path)
