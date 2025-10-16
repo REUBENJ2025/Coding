@@ -5,11 +5,20 @@
 # AS Computer Science
 # Greg Allcock
 
+
+
+
 def main():
+    sum_of_squares = 0
     result = 0
     user_input = int(input("Please enter a number: "))
-    iterator = 0
+    for i in range(1, user_input + 1):
+        sum_of_squares =+ i**2
+        
 
-    for x in range(1, user_input + 1):
-        iterator += 1
-        result = result + ((user_input - iterator ** 2))
+    print(f"the sum of square from 1 to {user_input} is: {sum_of_squares}")
+
+
+
+main()
+
