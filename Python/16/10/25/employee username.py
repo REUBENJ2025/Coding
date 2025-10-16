@@ -35,7 +35,7 @@ if not os.path.exists(file_path): #Uses Logic Gate Not, so it will not overwrite
     with open(file_path, "a") as file:  #Appends to the file 
         file.write("---Employee Logins--")
         file.write("\n")
-        file.close()
+        
 
 #Checks to see if user is in database by looking inside the file and returning specific values
 def existingUsers(): 
@@ -46,7 +46,7 @@ def existingUsers():
 
     with open(file_path, "r") as file: #Opens file for read
         file_contents = file.read()
-        file.close()
+        
 
         while base_username in file_contents: #Continously asks user to input login username until there is not a duplicate by incrimenting by 1
             num = num + 1
@@ -59,7 +59,6 @@ def existingUsers():
           if base_username not in file_contents:
             file.write("\n")
             file.write(base_username)
-            file.close()
             print("Username is unique") # Adds username to the file if unique
             return True
           if base_username in file_contents:
