@@ -4,62 +4,63 @@
 # AS Computer Science
 # Greg Allcock
 
-#Users enter a number between 1 and 100
+# Users enter a number between 1 and 100
 
 score = 0
 
-def fizz():
-    numberoutput()
-    global score
-    if myNumber % 3 == 0:
-        correct_answer = "fizz"
-        if choice == correct_answer:
+def fizz(myNumber, choice):
+    if myNumber % 3 == 0 and myNumber % 5 == 0:
+        return fizzbuzz(myNumber, choice)
+    elif myNumber % 3 == 0:
+        if choice == "fizz":
             print("Fizz")
-            global score
-            score = score + 1
+            return 1
+        else:
+            print("Incorrect, should be fizz")
+            return 0
+    elif myNumber % 5 == 0:
+        return buzz(myNumber, choice)
     else:
-        buzz()
+        return numberoutput(myNumber, choice)
 
-def buzz():
-    global score
-    if myNumber % 5 == 0:
-        correct_answer = "buzz"
+def buzz(myNumber, choice):
+    if choice == "buzz":
         print("Buzz")
-        global score
-        score = score + 1
-    if myNumber % 5 != 0 and choice == "buzz":
-        fizzbuzz()
+        return 1
+    else:
+        print("Incorrect, should be buzz")
+        return 0
 
-def fizzbuzz():
-    global score
-    if myNumber % 3 == 0 and myNumber % 5 == 0 and choice == "fizzbuzz":
+def fizzbuzz(myNumber, choice):
+    if choice == "fizzbuzz":
         print("FizzBuzz")
-        score = score + 1
-    if myNumber % 3 != 0 and myNumber % 5 != 0 and choice == "fizzbuzz":
-        error()
-    
-            
-def error():
-    global score
-    if choice != "fizz" and choice != "buzz" and choice != "fizzbuzz":
+        return 1
+    else:
+        print("Incorrect, should be fizzbuzz")
+        return 0
+
+def numberoutput(myNumber, choice):
+    if choice == "":
         print(myNumber)
-        fizz()
+        return 1
+    else:
+        print(f"Incorrect, should be nothing for {myNumber}")
+        return 0
 
-def numberoutput():
-    global score
-    if myNumber % 3 != 0 and myNumber % 5 != 0 and choice == "":
-        print(myNumber)
-        score = score + 1
+for i in range(1, 101):
+    while True:
+        try:
+            myNumber = int(input(f"Enter a number between 1 and 100, current number is {i}: "))
+            if myNumber == i:
+                break
+            else:
+                print(f"Please enter the correct number, current number is {i}: ")
+        except ValueError:
+            print("Please enter a valid integer.")
+    choice = input("Enter fizz if your number is divisible by 3, buzz if it is divisible by 5 or fizzbuzz if it is divisible by both or nothing if not divisible: ").strip().lower()
+    score += fizz(myNumber, choice)
 
-
-
-for i in range(1,101):
-    global myNumber
-    myNumber = int(input(f"Enter a number between 1 and 100, current number is {i}: "))
-    while myNumber != i:
-        myNumber = int(input(f"Please enter the correct number, current number is {i}: "))
-    choice = str(input(f"Enter fizz if your number is divisible by 3, buzz if it is divisible by 5 or fizzbuzz if it is divisible by both or nothing if not divisable: "))
-    fizz()
+print(f"Your final score is {score}")
 
 
 
