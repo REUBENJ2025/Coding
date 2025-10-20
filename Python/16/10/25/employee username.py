@@ -16,7 +16,9 @@
 
 
 #imported os to create folder + file                                                                                                           
+import configparser
 import os
+from configparser import ConfigParser, configparser
 
 
 
@@ -29,7 +31,22 @@ global file_path
 documents_folder = os.path.join(os.path.expanduser("~"), "Documents")       #Section creates folder an file using the os libary
 folder_name = os.path.join(documents_folder, "EmployeeData") #Creates Folder
 file_path = os.path.join(folder_name, "Employeedatabase.txt") #Creates File
+config_path = os.path.join(folder_name, "config.ini")
+
 os.makedirs(folder_name, exist_ok = True) 
+
+default_config = """[Settings]
+# Disable or enable login creation
+enabled = true"""
+
+if not os.path.exists(config_path):
+   with open(config_path, "w") as cfg:
+      cfg.write(default_config)
+
+config = ConfigParser()
+config.read(config_path)
+
+ 
 
 if not os.path.exists(file_path): #Uses Logic Gate Not, so it will not overwrite file if exists 
     with open(file_path, "a") as file:  #Appends to the file 
