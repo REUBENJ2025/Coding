@@ -17,14 +17,18 @@
 
 #imported os to create folder + file                                                                                                           
 import configparser
-import os
-import sys
+import os, sys
+import shutil
+
+
+
+
 
 config = configparser.ConfigParser()
 
 config["Settings"] = {
       "check_username": "True",
-      "theme": "Dark"
+      "note": "Press Ctrl + S to save changes",
       }
 
 
@@ -44,8 +48,13 @@ if not os.path.exists(file_path): #Uses Logic Gate Not, so it will not overwrite
     with open(file_path, "a") as file:  #Appends to the file 
         file.write("---Employee Logins--")
         file.write("\n")
+
+if not os.path.exists(ini_file):    
+  with open(ini_file, "w") as configfile:
+    config.write(configfile)
         
 
+   
 #Checks to see if user is in database by looking inside the file and returning specific values
 def existingUsers(file_path): 
     num = 1
@@ -55,12 +64,12 @@ def existingUsers(file_path):
 
     with open(file_path, "r") as file: #Opens file for read
         file_contents = file.read()
+
+        
         
 
         while base_username in file_contents: #Continously asks user to input login username until there is not a duplicate by incrimenting by 1
             num = num + 1
-            first_name = str(input("Please enter your First Name: "))
-            last_name = str(input("Please enter your Last Name: "))
             base_username = last_name[0].upper() + last_name[1:].lower() + first_name[0].upper() + str(num)
             
         
@@ -73,7 +82,24 @@ def existingUsers(file_path):
           if base_username in file_contents:
              return False
 
-existingUsers()
+
+config.read(ini_file)
+ #Uses ini file to check specific settings, either ignore duplicate employee usernames or run existingUsers()
+check_username = config.getboolean("Settings", "check_username")
+if check_username is True:
+    print("Username duplication checking is enabled.")
+    existingUsers(file_path)
+else:
+    print("Username checking is disabled.")
+    num = 1
+    first_name = str(input("Please enter your First Name"))
+    last_name = str(input("Please enter your Last name"))
+    base_username = last_name[0].upper() + last_name[1:].lower() + first_name[0].upper() + str(num)
+    with open(file_path, "a") as file:
+      file.write("\n")
+      file.write(base_username)
+
+
 
                     
              
