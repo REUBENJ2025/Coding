@@ -18,6 +18,7 @@
 #imported os to create folder + file                                                                                                           
 import configparser
 import os
+import sys
 
 config = configparser.ConfigParser()
 
@@ -35,7 +36,9 @@ config["Settings"] = {
 documents_folder = os.path.join(os.path.expanduser("~"), "Documents")       #Section creates folder an file using the os libary
 folder_name = os.path.join(documents_folder, "EmployeeData") #Creates Folder
 file_path = os.path.join(folder_name, "Employeedatabase.txt") #Creates File
+ini_file = os.path.join(folder_name, "Settings.ini")
 os.makedirs(folder_name, exist_ok = True) 
+
 
 if not os.path.exists(file_path): #Uses Logic Gate Not, so it will not overwrite file if exists 
     with open(file_path, "a") as file:  #Appends to the file 
@@ -70,6 +73,7 @@ def existingUsers(file_path):
           if base_username in file_contents:
              return False
 
+existingUsers()
 
                     
              
@@ -80,8 +84,3 @@ def existingUsers(file_path):
         
 
 
-config.read(ini_file)
-if config.getboolean("Settings", "check_username", fallback=False):
-  sys.exit()
-else:
-  existingUsers(file_path)
