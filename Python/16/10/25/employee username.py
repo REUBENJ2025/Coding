@@ -18,44 +18,33 @@
 #imported os to create folder + file                                                                                                           
 import configparser
 import os
-from configparser import ConfigParser, configparser
 
+config = configparser.ConfigParser()
 
+config["Settings"] = {
+      "check_username": "True",
+      "theme": "Dark"
+      }
 
 
 #####################################################################################################################
 ###CREATES FOLDER AND FILE IN YOUR DOCUMENTS FOLDER IF YOU NEED TO REMOVE SHOULD LOOK LIKE: Documents/EmployeeData###
 #####################################################################################################################
-global file_path
+
 
 documents_folder = os.path.join(os.path.expanduser("~"), "Documents")       #Section creates folder an file using the os libary
 folder_name = os.path.join(documents_folder, "EmployeeData") #Creates Folder
 file_path = os.path.join(folder_name, "Employeedatabase.txt") #Creates File
-config_path = os.path.join(folder_name, "config.ini")
-
 os.makedirs(folder_name, exist_ok = True) 
-
-default_config = """[Settings]
-# Disable or enable login creation
-enabled = true"""
-
-if not os.path.exists(config_path):
-   with open(config_path, "w") as cfg:
-      cfg.write(default_config)
-
-config = ConfigParser()
-config.read(config_path)
-
- 
 
 if not os.path.exists(file_path): #Uses Logic Gate Not, so it will not overwrite file if exists 
     with open(file_path, "a") as file:  #Appends to the file 
         file.write("---Employee Logins--")
         file.write("\n")
-        file.close()
+        
 
 #Checks to see if user is in database by looking inside the file and returning specific values
-def existingUsers(): 
+def existingUsers(file_path): 
     num = 1
     first_name = str(input("Please enter your First Name: "))
     last_name = str(input("Please enter your Last Name: "))
@@ -63,7 +52,7 @@ def existingUsers():
 
     with open(file_path, "r") as file: #Opens file for read
         file_contents = file.read()
-        file.close()
+        
 
         while base_username in file_contents: #Continously asks user to input login username until there is not a duplicate by incrimenting by 1
             num = num + 1
@@ -91,5 +80,8 @@ def existingUsers():
         
 
 
-
-existingUsers()
+config.read(ini_file)
+if config.getboolean("Settings", "check_username", fallback=False):
+  sys.exit()
+else:
+  existingUsers(file_path)
