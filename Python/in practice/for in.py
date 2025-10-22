@@ -31,7 +31,7 @@ for i in range(100000):
 
 #print(new_list)
 
-character = string.ascii_letters + string.digits + string.punctuation + string.
+character = string.ascii_letters + string.digits + string.punctuation 
 
 
 
@@ -39,3 +39,7 @@ password = [random.choice(character) for x in range(0,200)]
 
 
 print(' '.join(password))
+
+nlist = [x for x in range(1,101) if x%2 == 0]
+
+print(nlist)
