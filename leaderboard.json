@@ -1,0 +1,27 @@
+[
+          {
+                    "Player": "Alex",
+                    "Game": "Minecraft",
+                    "Score": 54
+          },
+          {
+                    "Player": "Ben",
+                    "Game": "Fortnite",
+                    "Score": 88
+          },
+          {
+                    "Player": "Chloe",
+                    "Game": "Fifa",
+                    "Score": 42
+          },
+          {
+                    "Player": "Dylan",
+                    "Game": "Minecraft",
+                    "Score": 71
+          },
+          {
+                    "Player": "Ella",
+                    "Game": "Fifa",
+                    "Score": 95
+          }
+]
