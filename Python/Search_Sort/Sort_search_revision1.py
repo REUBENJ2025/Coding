@@ -67,27 +67,24 @@ if (found):
 
 #Binary search
 
-items = [10,20,30,40,50,60]
-
-target = 30
-
-first = 0
+items = [10,20,30,40,50]
 
 found = False
 
+target = 20 
+first = 0
+
 last = len(items) - 1
 
-while (found == False and last > first):
-    mid = (first + last) //2
-    if target == items[mid]:
+while(found == False and first <= last):
+    mid = (first + last)//2
+    if items[mid] == target:
         found = True
         break
     else:
-
-        if target > items[mid]:
-         first = mid + 1
-        elif target < items[mid]:
+        if items[mid] < target:
+            first = mid + 1
+        elif items[mid] > target:
             last = mid - 1
-
-if (found == True):
+if found:
     print("Found")
