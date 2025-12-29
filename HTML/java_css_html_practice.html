@@ -1,0 +1,28 @@
+<html>
+
+
+
+<head>
+    
+    <link rel="stylesheet" href = "mystyle.css">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <h1>Testing</h1>
+    <p id="description">This is a practice page for HTML and CSS.</p>
+    <div class = "myClass">
+        This is a div with class "myClass".
+    </div>
+
+
+    <button id = "myButton" type = "button" onclick="ChangeColor()">Click me</button>
+
+    <script>
+        function ChangeColor(){
+            document.getElementById("description").style.color = "green";
+            alert("The color has been changed to green");
+        }
+    </script>
+</body>
+</html>
