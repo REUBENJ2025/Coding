@@ -1,0 +1,146 @@
+import tkinter as tk
+import random
+import time
+from tkinter import messagebox
+
+# ----- CONFIG -----
+SYMBOLS = ["🍒", "🍋", "🍊", "⭐", "BAR", "7️⃣"]
+SYMBOL_WEIGHTS = [30, 25, 20, 15, 8, 3]
+STARTING_CREDITS = 100
+SPIN_DELAY = 0.07
+
+THREE_MULTIPLIER = {"7️⃣": 100, "BAR": 50, "🍒": 20, "⭐": 10, "🍋": 5, "🍊": 4}
+TWO_MULTIPLIER = {"7️⃣": 10, "BAR": 5, "🍒": 3, "⭐": 2, "🍋": 1.5, "🍊": 1.2}
+
+
+# ----- GAME CLASS -----
+class SlotMachineGUI:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("🎰 Python Slot Machine 🎰")
+        self.root.configure(bg="#222")
+        self.root.resizable(False, False)
+
+        self.credits = STARTING_CREDITS
+        self.bet = tk.IntVar(value=5)
+        self.spinning = False
+
+        # --- GUI Layout ---
+        self.create_widgets()
+        self.update_labels()
+
+    def create_widgets(self):
+        # Title
+        tk.Label(self.root, text="🎰 Python Slot Machine 🎰", font=("Arial", 22, "bold"),
+                 bg="#222", fg="#FFD700").pack(pady=10)
+
+        # Credits and Bet
+        self.credit_label = tk.Label(self.root, font=("Arial", 14), bg="#222", fg="white")
+        self.credit_label.pack(pady=5)
+
+        bet_frame = tk.Frame(self.root, bg="#222")
+        tk.Label(bet_frame, text="Bet:", font=("Arial", 12), bg="#222", fg="white").pack(side=tk.LEFT)
+        tk.Spinbox(bet_frame, from_=1, to=50, width=5, textvariable=self.bet,
+                   font=("Arial", 12), justify='center').pack(side=tk.LEFT, padx=5)
+        bet_frame.pack(pady=5)
+
+        # Reels
+        reel_frame = tk.Frame(self.root, bg="#222")
+        self.reels = []
+        for _ in range(3):
+            lbl = tk.Label(reel_frame, text=random.choice(SYMBOLS),
+                           font=("Arial", 36, "bold"), width=4, bg="#333", fg="white", relief="ridge")
+            lbl.pack(side=tk.LEFT, padx=10)
+            self.reels.append(lbl)
+        reel_frame.pack(pady=10)
+
+        # Result Label
+        self.result_label = tk.Label(self.root, text="", font=("Arial", 14, "bold"),
+                                     bg="#222", fg="#FFD700")
+        self.result_label.pack(pady=5)
+
+        # Buttons
+        btn_frame = tk.Frame(self.root, bg="#222")
+        self.spin_btn = tk.Button(btn_frame, text="SPIN 🎡", font=("Arial", 14, "bold"),
+                                  bg="#32CD32", fg="black", width=10, command=self.spin)
+        self.spin_btn.pack(side=tk.LEFT, padx=10)
+
+        tk.Button(btn_frame, text="Reset", font=("Arial", 12),
+                  bg="#555", fg="white", width=8, command=self.reset_game).pack(side=tk.LEFT, padx=5)
+        tk.Button(btn_frame, text="Quit", font=("Arial", 12),
+                  bg="#880000", fg="white", width=8, command=self.root.destroy).pack(side=tk.LEFT, padx=5)
+        btn_frame.pack(pady=15)
+
+    def update_labels(self):
+        self.credit_label.config(text=f"Credits: {self.credits}")
+        self.root.update_idletasks()
+
+    def spin(self):
+        if self.spinning:
+            return
+
+        bet = self.bet.get()
+        if bet > self.credits:
+            messagebox.showwarning("Not enough credits", "You don't have enough credits!")
+            return
+
+        self.credits -= bet
+        self.update_labels()
+        self.spinning = True
+        self.result_label.config(text="Spinning...")
+
+        # Simulate reel spin animation
+        self.animate_spin(bet)
+
+    def animate_spin(self, bet, frames=20):
+        for i in range(frames):
+            for lbl in self.reels:
+                lbl.config(text=random.choice(SYMBOLS))
+            self.root.update()
+            time.sleep(SPIN_DELAY)
+        # Final symbols
+        final = [random.choices(SYMBOLS, weights=SYMBOL_WEIGHTS)[0] for _ in range(3)]
+        for i, lbl in enumerate(self.reels):
+            lbl.config(text=final[i])
+        self.root.update()
+        self.check_result(final, bet)
+        self.spinning = False
+
+    def check_result(self, reels, bet):
+        s1, s2, s3 = reels
+        payout, message = 0, "No match"
+
+        if s1 == s2 == s3:
+            multiplier = THREE_MULTIPLIER.get(s1, 0)
+            payout = int(bet * multiplier)
+            message = f"Three {s1}! x{multiplier}"
+        elif s1 == s2 or s2 == s3 or s1 == s3:
+            sym = s1 if s1 == s2 or s1 == s3 else s2
+            multiplier = TWO_MULTIPLIER.get(sym, 0)
+            payout = int(bet * multiplier)
+            message = f"Two {sym}! x{multiplier}"
+
+        if payout > 0:
+            self.credits += payout
+            self.result_label.config(text=f"WIN! {message} → +{payout}", fg="#00FF00")
+        else:
+            self.result_label.config(text=f"{message} → -{bet}", fg="#FF5555")
+
+        if self.credits <= 0:
+            messagebox.showinfo("Game Over", "You're out of credits! Reset to play again.")
+            self.spin_btn.config(state="disabled")
+
+        self.update_labels()
+
+    def reset_game(self):
+        self.credits = STARTING_CREDITS
+        self.result_label.config(text="")
+        self.spin_btn.config(state="normal")
+        self.update_labels()
+
+
+# ----- RUN GAME -----
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = SlotMachineGUI(root)
+    root.mainloop()
