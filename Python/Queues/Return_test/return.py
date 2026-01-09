@@ -45,4 +45,3 @@ while True:
         choice2 = input("Add Item (y/n)? ")
         if choice2.lower() == "y":
             array_result = my_array(array_result)
-
