@@ -5,4 +5,4 @@ for i in range(5):
     items.append(int(user_input))
 
 for i in range(len(items)):
-    print(f"Number {i + 1} is {items[i]}")
+    print(f"Number {i + 1} is {items[i]}") #Iterates through Items
