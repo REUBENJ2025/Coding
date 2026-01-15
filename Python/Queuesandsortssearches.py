@@ -92,20 +92,17 @@ MAX_SIZE = 10
 def array(user_val,):
     arr.append(user_val)
     print(arr)
-    return
 
 
 
 def dequeue():
     arr.pop(0)
-    return 
 
 
 
 def enqueue():
     user_val = int(input("Enter a value to enqueue: "))
     update_arr = array(user_val)
-    return 
 
 
 
@@ -130,7 +127,7 @@ while True:
 
     elif user_input == 2 and head_pointer > -1:
         new_dequeue = dequeue()
-        head_pointer += 1
+        head_pointer -= 1
         print(arr)
         print(f"The head pointer is at position {head_pointer} and rear pointer is at position {rear_pointer}")
     elif user_input == 2 and head_pointer == -1:
