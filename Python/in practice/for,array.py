@@ -6,3 +6,5 @@ for i in range(5):
 
 for i in range(len(items)):
     print(f"Number {i + 1} is {items[i]}") #Iterates through Items
+
+    
